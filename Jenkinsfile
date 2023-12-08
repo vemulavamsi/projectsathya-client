@@ -36,21 +36,16 @@ pipeline {
         stage('Pull Docker image from ECR') {
             steps {
                 script{
-                        // sh "docker pull ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/node-repo:${env.BUILD_NUMBER}"
-						//sh "docker run -itd -p 3000:3000 --name learning111 ${buildProps.AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/node-repo:${env.BUILD_NUMBER}"
-						// Removing existing image
-						// sh "docker rmi -f automationecr"
-						// Pulling latest version of docker image
-						sh "docker push 940705824822.dkr.ecr.us-east-1.amazonaws.com/mypracticewebsitel:latest"
+
+						sh "docker pull 940705824822.dkr.ecr.us-east-1.amazonaws.com/mypracticewebsitel:latest"
                     
 						sh 'docker ps -f name=vamsi-Adi-practice -q | xargs --no-run-if-empty docker container stop'
 
 						sh 'docker container ls -a -fname=vamsi-Adi-practice -q | xargs -r docker container rm'
+                        
 						// creating container and port mapping
-                    
-						// sh "docker run -d --name vamsi-Adi-practice -p 3000:3000 public.ecr.aws/g8i9m6o6/learning111:latest" 
-						//logs
-						//sh "docker run -d -p 3000:3000 --name vamsi-Adi-practice --log-driver=awslogs --log-opt awslogs-region=us-east-1 --log-opt awslogs-group=$LOG_GROUP_NAME 933794111312.dkr.ecr.us-east-1.amazonaws.com/automationecr:latest"
+                    sh "docker run -d --name vamsi-Adi-practice -p 4200:4200 public.ecr.aws/g8i9m6o6/mypracticewebsitel:latest" 
+					
                 }
 			}
 		}
