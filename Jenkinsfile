@@ -44,7 +44,7 @@ pipeline {
 						sh 'docker container ls -a -fname=vamsi-Adi-practice -q | xargs -r docker container rm'
                         
 						// creating container and port mapping
-                    sh "docker run -d --name vamsi-Adi-practice -p 4200:4200 public.ecr.aws/g8i9m6o6/mypracticewebsitel:latest" 
+                    sh "docker run -d --name vamsi-Adi-practice -p 4200:4200 mypracticewebsitel:latest" 
 					
                 }
 			}
