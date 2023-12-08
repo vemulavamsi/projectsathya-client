@@ -64,5 +64,5 @@ ENV PORT=3000
 
 EXPOSE ${PORT}
 
-CMD [ "npm", "start" ,"filebeat", "-e"]
+CMD [ "npm", "start" ,"ng s"]
 
