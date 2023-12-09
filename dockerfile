@@ -60,9 +60,9 @@ RUN npm install
 
 COPY . .
 
-ENV PORT=3000
+ENV PORT=4200
 
 EXPOSE ${PORT}
 
-CMD [ "npm", "start" ,"ng s"]
+CMD [ "ng","s"]
 
