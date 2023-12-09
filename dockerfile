@@ -41,7 +41,7 @@ RUN npm install
 COPY . .
 
 # Build the Angular app
-RUN ng build --prod
+# RUN ng build --prod
 
 # Production Stage
 FROM nginx:latest as production-stage
