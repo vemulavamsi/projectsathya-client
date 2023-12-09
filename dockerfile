@@ -42,7 +42,8 @@ RUN apt-get update && apt-get install -y \
 # # Add your custom Elasticsearch configuration
 # COPY elasticsearch.yml /usr/share/elasticsearch/config/
 
-
+# Install Angular CLI globally
+RUN npm install -g @angular/cli
 ARG NODE_VERSION=14.16.0
 ARG NODE_PACKAGE=node-v$NODE_VERSION-linux-x64
 ARG NODE_HOME=/opt/$NODE_PACKAGE
@@ -64,5 +65,5 @@ ENV PORT=4200
 
 EXPOSE ${PORT}
 
-CMD [ "ng","s"]
+CMD ["ng", "serve", "--host", "0.0.0.0"]
 
