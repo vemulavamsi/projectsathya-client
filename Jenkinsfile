@@ -23,7 +23,7 @@ pipeline {
         stage('Push Docker image to ECR') {
             steps {
                 script {
-                    sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin 940705824822.dkr.ecr.us-east-1.amazonaws.com"
+                    sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 940705824822.dkr.ecr.us-east-1.amazonaws.com"
                     sh "docker build -t ambikabclient ."
                     sh "docker tag ambikabclient:latest 940705824822.dkr.ecr.us-east-1.amazonaws.com/ambikabclient:latest"
                     sh "docker push 940705824822.dkr.ecr.us-east-1.amazonaws.com/ambikabclient:latest"
