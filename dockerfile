@@ -93,4 +93,5 @@ COPY --from=build-stage /app/dist/out .
 EXPOSE 80
 
 # The default command to start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# CMD ["nginx", "-g", "daemon off;"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
