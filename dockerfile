@@ -55,5 +55,6 @@ WORKDIR /usr/share/nginx/html
 EXPOSE 80
 
 # The default command to start nginx
-CMD ["nginx", "-g", "daemon off;"]
-# CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
+# CMD ["nginx", "-g", "daemon off;"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
+# CMD ["ng", "serve", "--host", "0.0.0.0"]
