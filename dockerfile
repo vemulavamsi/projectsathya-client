@@ -87,10 +87,8 @@ FROM  --platform=linux/amd64 nginx:latest as production-stage
 RUN mkdir /app 
 # COPY --from=build-stage /app/build /app 
 # COPY nginx.conf /etc/nginx/nginx.conf
-
-ENV PORT=4200
-
-EXPOSE ${PORT}
-
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+# Expose port 80 for the Angular app
+EXPOSE 80
+# Start the Angular app
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
 
