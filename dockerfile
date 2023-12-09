@@ -24,7 +24,7 @@
 # CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
 
 # Build Stage
-FROM node:14.16.0 AS build-stage
+FROM node:14.16.0
 
 WORKDIR /app
 
@@ -44,7 +44,7 @@ COPY . .
 # RUN ng build --prod
 
 # Production Stage
-FROM nginx:latest as production-stage
+FROM nginx:latest 
 
 WORKDIR /usr/share/nginx/html
 
