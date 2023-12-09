@@ -36,7 +36,9 @@ pipeline {
         script {
             sh "docker pull 940705824822.dkr.ecr.us-east-1.amazonaws.com/ambikabclient:latest"
             sh 'docker container ls -a -f name=My-practice-website-client -q | xargs -r docker container rm'
-            sh "docker run -itd --name My-practice-website-client -p 4200:4200 940705824822.dkr.ecr.us-east-1.amazonaws.com/ambikabclient:latest ng serve --host 0.0.0.0"
+           // sh "docker run -itd --name My-practice-website-client -p 4200:4200 940705824822.dkr.ecr.us-east-1.amazonaws.com/ambikabclient:latest ng serve --host 0.0.0.0"
+           sh "docker run -itd --name My-practice-website-client -p 4200:80 940705824822.dkr.ecr.us-east-1.amazonaws.com/ambikabclient:latest"
+
         }
     }
 }
