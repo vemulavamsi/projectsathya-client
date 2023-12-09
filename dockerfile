@@ -43,10 +43,12 @@ COPY . .
 # Build the Angular app
 # RUN ng build --prod
 
+CMD ["ng", "serve", "--host", "0.0.0.0"]
+
 # Production Stage
 FROM nginx:latest 
 
-WORKDIR /usr/share/nginx/html
+# WORKDIR /usr/share/nginx/html
 
 # Copy the built app from the build stage
 # COPY --from=build-stage /app/dist/out .
@@ -54,7 +56,5 @@ WORKDIR /usr/share/nginx/html
 # Expose port 80 for the Angular app
 EXPOSE 80
 
-# The default command to start nginx
-# CMD ["nginx", "-g", "daemon off;"]
 # CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+# CMD ["ng", "serve", "--host", "0.0.0.0"]
