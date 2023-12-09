@@ -86,7 +86,7 @@ RUN npm run build --omit=dev
 FROM  --platform=linux/amd64 nginx:latest as production-stage 
 RUN mkdir /app 
 COPY --from=build-stage /app/build /app 
-COPY nginx.conf /etc/nginx/nginx.conf
+# COPY nginx.conf /etc/nginx/nginx.conf
 
 ENV PORT=4200
 
