@@ -1,4 +1,6 @@
 FROM --platform=linux/amd64 node:19-alpine as build-stage
+# Install Angular CLI globally
+RUN npm install -g @angular/cli
 WORKDIR /app 
 COPY package*.json ./
 RUN npm install
