@@ -17,3 +17,4 @@ FROM  --platform=linux/amd64 nginx:latest as production-stage
 RUN mkdir /app 
 # COPY --from=build-stage /app/build /app 
 COPY nginx.conf /etc/nginx/nginx.conf
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
