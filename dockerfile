@@ -57,7 +57,12 @@
 # # CMD ["ng", "serve", "--host", "0.0.0.0"]
 # Build Stage
 FROM node:14.16.0 AS build-stage
+ARG NODE_VERSION=14.16.0
+ARG NODE_PACKAGE=node-v$NODE_VERSION-linux-x64
+ARG NODE_HOME=/opt/$NODE_PACKAGE
 
+ENV NODE_PATH $NODE_HOME/lib/node_modules
+ENV PATH $NODE_HOME/bin:$PATH
 WORKDIR /app
 
 # Install Angular CLI globally
