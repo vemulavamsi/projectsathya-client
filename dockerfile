@@ -56,42 +56,74 @@
 # # CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
 # # CMD ["ng", "serve", "--host", "0.0.0.0"]
 # Build Stage
-FROM node:14.16.0 AS build-stage
+# FROM node:14.16.0 AS build-stage
 
-WORKDIR /app
+# WORKDIR /app
+
+# # Install Angular CLI globally
+# RUN npm install -g @angular/cli
+
+# # Copy package files
+# COPY package*.json ./
+
+# # Install app dependencies
+# RUN npm install
+
+# # Copy the rest of the application code
+# COPY . .
+
+# # Build the Angular app
+# RUN npm run build -- --output-path=./dist/out
+
+# # Production Stage
+# FROM nginx:latest as production-stage
+
+# # Install Angular CLI globally in the production image
+# RUN apt-get update && \
+#     apt-get install -y npm && \
+#     npm install -g @angular/cli
+# # Create a directory to store the built app
+# WORKDIR /usr/share/nginx/html
+
+# # Copy the built app from the build stage
+# COPY --from=build-stage /app/dist/out .
+
+# # Expose port 80 for the Angular app
+# EXPOSE 80
+
+# # The default command to start nginx
+# CMD ["nginx", "-g", "daemon off;"]
+
+# Stage 1: Build Angular application
+FROM node:14.16.0 AS build-stage
 
 # Install Angular CLI globally
 RUN npm install -g @angular/cli
 
-# Copy package files
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install app dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the application code
+# Copy the entire project
 COPY . .
 
 # Build the Angular app
-RUN npm run build -- --output-path=./dist/out
+RUN ng build --prod
 
-# Production Stage
+# Stage 2: Create production image with Nginx
 FROM nginx:latest as production-stage
 
-# Install Angular CLI globally in the production image
-RUN apt-get update && \
-    apt-get install -y npm && \
-    npm install -g @angular/cli
-
-# Create a directory to store the built app
-WORKDIR /usr/share/nginx/html
-
-# Copy the built app from the build stage
-COPY --from=build-stage /app/dist/out .
+# Copy the built Angular app from the build stage to the Nginx image
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 # Expose port 80 for the Angular app
 EXPOSE 80
 
-# The default command to start nginx
-# CMD ["nginx", "-g", "daemon off;"]
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
+# The default command starts Nginx to serve the Angular app
+CMD ["nginx", "-g", "daemon off;"]
+
