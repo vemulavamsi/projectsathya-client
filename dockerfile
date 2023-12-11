@@ -40,5 +40,5 @@ EXPOSE 80
 
 # # The default command to start nginx
 # #CMD ["nginx", "-g", "daemon off", "ng","serve"]
-# CMD ["nginx", "-g", "daemon off;"]
+ CMD ["nginx", "-g", "daemon off;"]
 
