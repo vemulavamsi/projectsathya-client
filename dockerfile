@@ -5,7 +5,7 @@ ARG NODE_HOME=/opt/$NODE_PACKAGE
 
 ENV NODE_PATH $NODE_HOME/lib/node_modules
 ENV PATH $NODE_HOME/bin:$PATH
-# WORKDIR /app
+WORKDIR /app
 
 # Install Angular CLI globally
 RUN npm install -g @angular/cli
@@ -20,8 +20,8 @@ RUN npm install
 COPY . .
 
 # Build the Angular app
-# RUN npm run build -- --output-path=./dist/out
-RUN npm run build
+RUN npm run build -- --output-path=./dist/out
+#RUN npm run build
 # Production Stage
 FROM nginx:latest as production-stage
 
