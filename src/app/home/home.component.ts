@@ -13,10 +13,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getPublicContent().subscribe({
-      next: data => {
+      next: (data: string | undefined) => {
         this.content = data;
       },
-      error: err => {
+      error: (err: { error: string; }) => {
         this.content = JSON.parse(err.error).message;
       }
     });

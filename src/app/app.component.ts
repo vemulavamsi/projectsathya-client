@@ -7,6 +7,9 @@ import { TokenStorageService } from './_services/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
