@@ -36,7 +36,7 @@ WORKDIR /usr/share/nginx/html
 COPY --from=build-stage /app/dist/out .
 COPY nginx.conf /etc/nginx/nginx.conf
 # Expose port 80 for the Angular app
-# EXPOSE 80
+EXPOSE 80
 
 # # The default command to start nginx
 # #CMD ["nginx", "-g", "daemon off", "ng","serve"]
