@@ -5,7 +5,7 @@ ARG NODE_HOME=/opt/$NODE_PACKAGE
 
 ENV NODE_PATH $NODE_HOME/lib/node_modules
 ENV PATH $NODE_HOME/bin:$PATH
-WORKDIR /app
+# WORKDIR /app
 
 # Install Angular CLI globally
 RUN npm install -g @angular/cli
@@ -30,7 +30,8 @@ RUN apt-get update && \
     apt-get install -y npm && \
     npm install -g @angular/cli
 # Create a directory to store the built app
-WORKDIR /usr/share/nginx/html
+#WORKDIR /usr/share/nginx/html
+WORKDIR /app
 
 # Copy the built app from the build stage
 COPY --from=build-stage /app/dist/out .
