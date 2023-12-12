@@ -35,7 +35,8 @@ WORKDIR /app
 
 # Copy the built app from the build stage
 COPY --from=build-stage /app/dist/out .
-COPY nginx.conf /etc/nginx/nginx.conf
+# COPY nginx.conf /etc/nginx/nginx.conf
+
 # Expose port 80 for the Angular app
 EXPOSE 80
 
