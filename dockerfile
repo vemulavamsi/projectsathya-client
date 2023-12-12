@@ -20,7 +20,8 @@ RUN npm install
 COPY . .
 
 # Build the Angular app
-RUN npm run build -- --output-path=./dist/out
+# RUN npm run build -- --output-path=./dist/out
+RUN npm run build
 #RUN npm run build
 # Production Stage
 FROM nginx:latest as production-stage
@@ -32,10 +33,10 @@ RUN apt-get update && \
 # Create a directory to store the built app
 #WORKDIR /usr/share/nginx/html
 WORKDIR /app
-
+COPY --from=build-stage / app
 # Copy the built app from the build stage
-COPY --from=build-stage /app/dist/out .
-COPY nginx.conf /etc/nginx/nginx.conf
+# COPY --from=build-stage /app/dist/out .
+# COPY nginx.conf /etc/nginx/nginx.conf
 # Expose port 80 for the Angular app
 EXPOSE 80
 
