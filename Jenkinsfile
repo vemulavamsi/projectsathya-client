@@ -10,8 +10,6 @@ pipeline {
     }
 
     stages {
-
-
         stage('Push Docker image to ECR') {
             steps {
                 script {
