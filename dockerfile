@@ -20,8 +20,8 @@ RUN npm install
 COPY . .
 
 # Build the Angular app
-# RUN npm run build -- --output-path=./dist/out
-RUN npm run build
+RUN npm run build -- --output-path=./dist/out
+# RUN npm run build
 #RUN npm run build
 # Production Stage
 FROM nginx:latest as production-stage
