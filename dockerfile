@@ -21,7 +21,7 @@ COPY . .
 
 # Build the Angular app
 RUN npm run build -- --output-path=./dist/out
-
+#RUN npm run build
 # Production Stage
 FROM nginx:latest as production-stage
 
@@ -30,7 +30,8 @@ RUN apt-get update && \
     apt-get install -y npm && \
     npm install -g @angular/cli
 # Create a directory to store the built app
-WORKDIR /usr/share/nginx/html
+#WORKDIR /usr/share/nginx/html
+WORKDIR /app
 
 # Copy the built app from the build stage
 COPY --from=build-stage /app/dist/out .
