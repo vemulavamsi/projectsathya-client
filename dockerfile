@@ -21,7 +21,6 @@ COPY . .
 
 # Build the Angular app
 RUN npm run build -- --output-path=./dist/out
-# RUN npm run build
 #RUN npm run build
 # Production Stage
 FROM nginx:latest as production-stage
@@ -36,11 +35,10 @@ WORKDIR /app
 
 # Copy the built app from the build stage
 COPY --from=build-stage /app/dist/out .
-# COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 # Expose port 80 for the Angular app
 EXPOSE 80
 
 # # The default command to start nginx
 # #CMD ["nginx", "-g", "daemon off", "ng","serve"]
 CMD ["nginx", "-g", "daemon off;"]
-
